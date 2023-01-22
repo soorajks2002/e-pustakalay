@@ -9,4 +9,4 @@ class book(models.Model)  :
 class author(models.Model) :
     authid = models.CharField(max_length=10)
     auth_name = models.CharField(max_length=100)
-    # books = 
+    books = models.CharField(max_length=22)
