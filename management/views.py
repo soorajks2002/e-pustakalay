@@ -33,9 +33,8 @@ def saveNewAuth(request) :
     return HttpResponse("Not working")
 
 def viewBook(request,bid) :
-    bo = Book.objects.get(bookId=bid)
-    au = Book2Auth.objects.get(book=bo).auth
-    context =  {"book" : bo, "auth" : au}
+    ord = Book2Auth.objects.get(book = Book.objects.get(bookId=bid))
+    context = {"ord" : ord}
     return render(request, 'management/book_detail.html', context)
 
 def viewAuth(request,aid) :

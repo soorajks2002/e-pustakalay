@@ -10,7 +10,7 @@ class Book(models.Model) :
     # bookAuth = models.ForeignKey('Author', on_delete=models.CASCADE)
     
     def get_absolute_url(self):
-        return reverse("book_info", kwargs={"bid": self.bookId})
+        return reverse("manageapp:book_info", kwargs={"bid": self.bookId})
     
     
 class Author(models.Model) :
@@ -18,9 +18,16 @@ class Author(models.Model) :
     authName = models.CharField(max_length=30)
     
     def get_absolute_url(self):
-        return reverse("auth_info", kwargs={"aid": self.authId})
+        return reverse("manageapp:auth_info", kwargs={"aid": self.authId})
     
     
 class Book2Auth(models.Model) :
     book = models.ForeignKey('Book',on_delete=models.CASCADE)
     auth =  models.ForeignKey('Author', on_delete=models.CASCADE)
+    
+    def get_absolute_url(self):
+        return reverse("userapp:order_book", kwargs={"pk": self.pk})
+    
+    def final_order_url(self) :
+        return reverse("userapp:order_final", kwargs={"pk":self.pk})
+    

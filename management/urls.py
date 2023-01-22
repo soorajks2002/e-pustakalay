@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+app_name = 'management'
+
 urlpatterns = [
     path('book/', views.newBook, name='new_book'),
     path('book/save-new-book', views.saveNewBook, name='save_new_book'),
