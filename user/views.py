@@ -13,7 +13,7 @@ def homepage_genre(request) :
     fin = {}
     genres = ['romance', 'action', 'drama', 'self-help']
     for i in genres :
-        bo = Book.objects.filter(genres = i)
+        bo = Book.objects.filter(genres = i)[:5]
         fin[i] = bo
     context = {"fin" : fin}  
     return render(request, 'user/homepage_genre.html', context)
@@ -29,3 +29,7 @@ def order_final(request, pk) :
     order.book.save()
     return redirect("/")
     # return redirect(reverse("manageapp:book_info", kwargs={"bid": order.book.bookId}))
+    
+def book_by_genre(request, genre) :
+    context = {"fin" : {genre : Book.objects.filter(genres=genre)}}
+    return render(request, 'user/genre_book.html', context)
