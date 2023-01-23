@@ -6,6 +6,7 @@ from django.urls import reverse
 class Book(models.Model) :
     bookId = models.CharField(max_length=10, primary_key=True)
     bookName = models.CharField(max_length=50)
+    genres = models.CharField(max_length=50, default='NIL')
     copies = models.IntegerField()
     # bookAuth = models.ForeignKey('Author', on_delete=models.CASCADE)
     

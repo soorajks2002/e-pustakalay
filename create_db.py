@@ -9,6 +9,7 @@ for i in range(6) :
 
 book_name = ['The', 'World', 'Wonderful', 'Silent', 'Lamb', 'Threatning', 'Scary', 'Beautiful', 'Romace',
              'Evening', 'Winter', 'Summer', 'Hate', 'Killer', 'Turn', 'Race']
+genres = ['Romance', 'Action', 'Drama', 'Self-Help']
 
 for i in range(100) : 
     # aut = auth_name[i%5]
@@ -21,7 +22,8 @@ for i in range(100) :
         name.append(book_name[random.randint(0,15)])
     name = ' '.join(name)   
     copy = random.randint(3,28)
-    book = Book(id, name, copy)
+    genre = genres[random.randint(0,3)]
+    book = Book(id, name, genre, copy)
     book.save()
    
 # for i in range(40) :  

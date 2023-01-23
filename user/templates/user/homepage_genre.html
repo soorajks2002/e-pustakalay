@@ -19,17 +19,24 @@
 			crossorigin="anonymous"
 		></script>
 
-		{% comment %} {% for b3 in b2a %} {% endcomment %}
+		{% for gen,boo in fin.items %}
 		<div class="text-center">
+			<h1 class="text-start text-uppercase fw-bold mt-5 mb-5">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{gen}}
+			</h1>
 			<div class="row">
-				{% for bo in b2a %}
+				{% for bo in boo %}
 				<div class="col">
 					<div class="card text-bg-dark mt-3 ms-3" style="width: 18rem">
 						<div class="card-body">
-							<h5 class="card-title">{{bo.book.bookId}}</h5>
-							<h3 class="card-text">{{bo.book.bookName}}</h3>
+							{% comment %}
+							<h5 class="card-title">{{bo.bookId}}</h5>
+							{% endcomment %}
+							<h3 class="card-text">{{bo.bookName}}</h3>
+							{% comment %}
 							<p class="card-text">{{bo.auth.authName}}</p>
-							<a href="{{bo.book.get_absolute_url}}" class="btn btn-primary"
+							{% endcomment %}
+							<a href="{{bo.get_absolute_url}}" class="btn btn-primary"
 								>Know More</a
 							>
 							<a href="{{bo.get_absolute_url}}" class="btn btn-primary"
@@ -41,6 +48,6 @@
 				{% endfor %}
 			</div>
 		</div>
-		{% comment %} {% endfor %} {% endcomment %}
+		{% endfor %}
 	</body>
 </html>
