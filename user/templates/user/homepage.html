@@ -13,15 +13,26 @@
 	</head>
 	<body class="bg-warning">
 		<div class="row">
-			<div class="col">
+			<div class="col-6">
 				<h1 class="text-center mt-3 mb-5 fw-bold">WELCOME to E-pustakaalay!</h1>
 			</div>
 			<div class="col">
 				{% url 'userapp:homepage_gnere' as homepage_gnere%}
 				<a
 					href="{{homepage_gnere}}"
-					class="btn btn-dark btn-lg fw-bold mt-3 mb-5"
+					class="btn btn-dark btn-lg fw-bold mt-4 mb-5"
 					>Get Books By Genre</a
+				>
+			</div>
+			<div class="col-1 mt-4 mb-5">
+				<a href={% url 'userapp:sign_up' %} class="btn btn-dark btn-lg fw-bold"
+					>Sign Up</a
+				>
+			</div>
+
+			<div class="col-1 mt-4 mb-5">
+				<a href={% url 'userapp:sign_in' %} class="btn btn-dark btn-lg fw-bold"
+					>Log In</a
 				>
 			</div>
 		</div>

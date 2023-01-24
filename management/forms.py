@@ -9,6 +9,4 @@ class NewAuthorForm(ModelForm) :
 class NewBookForm(ModelForm) :
     class Meta :
         model = Book
-        fields = ['bookId','bookName','copies'
-                #   ,'bookAuth'
-                  ]
+        fields = ['bookId','bookName','copies']
