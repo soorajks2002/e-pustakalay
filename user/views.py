@@ -6,6 +6,8 @@ from .forms import RegisterForm, LoginForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .models import Order
 
 # from .models import Client
 # from .forms import ClientForm
@@ -25,15 +27,21 @@ def homepage_genre(request) :
     context = {"fin" : fin}  
     return render(request, 'user/homepage_genre.html', context)
 
+# @login_required(login_url = 'userapp:log_in')
 def order_book(request, pk) :
     order = Book2Auth.objects.get(pk=pk)
     context = {'order':order}
     return render(request, 'user/order_book.html', context)
 
+@login_required(login_url = 'userapp:log_in')
 def order_final(request, pk) :
-    order = Book2Auth.objects.get(pk=pk)
-    order.book.copies = order.book.copies - 1
-    order.book.save()
+    order_info = Book2Auth.objects.get(pk=pk)
+    order_info.book.copies = order_info.book.copies - 1
+    order_info.book.save()
+    
+    order = Order(user=request.user, book=order_info.book)
+    order.save()
+    
     return redirect(reverse('userapp:homepage'))
     # return redirect(reverse("manageapp:book_info", kwargs={"bid": order.book.bookId}))
     
@@ -76,9 +84,13 @@ def log_out(request) :
     return redirect(reverse('userapp:homepage'))
 
 def account(request) :
-    usr = request.user
-    
-    return HttpResponse('hello')
+    if request.method=='POST' :
+        book = Book.objects.all().get(pk=request.POST.get('book-id'))
+        book.copies = book.copies + 1
+        book.save()
+        Order.objects.filter(user=request.user, book=book).delete()
+    order = Order.objects.filter(user=request.user)
+    return render(request, 'user/user_detail.html', {'orders' : order})
 
 
 

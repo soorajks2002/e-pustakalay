@@ -21,60 +21,51 @@
 
 		<div class="d-flex justify-content-center mt-5">
 			<ul class="list-group list-group-horizontal">
-				<h2 class="fw-bold">Book Id : ‎  </h2>
+				<h2 class="fw-bold">Book Id : ‎</h2>
 				<h2 class="fw-bold">{{order.book.bookId}}</h2>
 			</ul>
 		</div>
 
 		<div class="d-flex justify-content-center mt-3">
 			<ul class="list-group list-group-horizontal">
-				<h2 class="fw-bold">Book Name : ‎  </h2>
+				<h2 class="fw-bold">Book Name : ‎</h2>
 				<h2 class="fw-bold">{{order.book.bookName}}</h2>
 			</ul>
 		</div>
 
 		<div class="d-flex justify-content-center mt-3">
 			<ul class="list-group list-group-horizontal">
-				<h2 class="fw-bold">Genre : ‎  </h2>
+				<h2 class="fw-bold">Genre : ‎</h2>
 				<h2 class="fw-bold">{{order.book.genres}}</h2>
 			</ul>
 		</div>
 
-		<div class="d-flex justify-content-center mt-3">
+		<div class="d-flex justify-content-center mt-3 mb-5">
 			<ul class="list-group list-group-horizontal">
-				<h2 class="fw-bold">Available Copies : ‎  </h2>
+				<h2 class="fw-bold">Available Copies : ‎</h2>
 				<h2 class="fw-bold">{{order.book.copies}}</h2>
 			</ul>
 		</div>
 
-		<div class="d-flex justify-content-center mt-3">
+		<div class="d-flex justify-content-center mt-5">
 			<ul class="list-group list-group-horizontal">
-				<h2 class="fw-bold">Author Id : ‎  </h2>
+				<h2 class="fw-bold">Author Id : ‎</h2>
 				<h2 class="fw-bold">{{order.auth.authId}}</h2>
 			</ul>
 		</div>
 
 		<div class="d-flex justify-content-center mt-3 mb-5">
 			<ul class="list-group list-group-horizontal">
-				<h2 class="fw-bold">Author Name : ‎  </h2>
+				<h2 class="fw-bold">Author Name : ‎</h2>
 				<h2 class="fw-bold">{{order.auth.authName}}</h2>
 			</ul>
 		</div>
 
 		<div class="d-flex justify-content-center m-5">
 			<div class="card text-center bg-danger" style="width: 40rem">
-				<div class="card-header">Final</div>
-				<div class="card-body">
-					<h5 class="card-title">E-pustakalay</h5>
-					<p class="card-text">
-						With supporting text below as a natural lead-in to additional
-						content.
-					</p>
-					<a href="{{order.final_order_url}}" class="btn btn-primary"
-						>Order Now</a
-					>
-				</div>
-				<div class="card-footer text-muted">-----</div>
+				<a href="{{order.final_order_url}}" class="btn btn-lg btn-dark fw-bold"
+					>Order Now</a
+				>
 			</div>
 		</div>
 	</body>
