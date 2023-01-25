@@ -12,10 +12,13 @@ urlpatterns = [
     path('order/<int:pk>', views.order_book, name='order_book'),
     path('final-order/<int:pk>', views.order_final, name='order_final'),
     
-    # path('', include('django.contrib.auth.urls'), name='login'),
+    # path('accounts/', include('django.contrib.auth.urls')),
+    
     path('signup/', views.sign_up, name="sign_up"),
     path('login/', views.log_in, name='log_in'),
     path('logout/', views.log_out, name='log_out'),
+    
+    path('account/', views.account, name='account'),
     
     #! Custom User sign up and login pages 
     # path('sign-up/', views.signup_page, name='sign_up'),

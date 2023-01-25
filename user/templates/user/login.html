@@ -2,6 +2,25 @@
 
 {% block title %}LOGIN{% endblock title %}
 
+
+{%load crispy_forms_tags %} 
 {% block body %}
-{{form}}
+
+{% if messages %}
+    {% for message in messages %}
+    <div class='d-flex align-items-center justify-content-center'>
+    <div class="col-6 alert alert-dark" role="alert">
+        <strong>{{message}} !</strong>
+      </div></div>
+    {% endfor %}
+{% endif %}
+
+<form method='post' action={% url 'userapp:log_in' %}>
+    <div class='container'>
+    {% csrf_token %}
+    {{form|crispy}}
+    {% comment %} {{form.as_p}} {% endcomment %}
+    <button type="submit" class="btn btn-lg btn-primary mt-5">Submit</button>
+    </div>  
+</form>
 {% endblock body %}
