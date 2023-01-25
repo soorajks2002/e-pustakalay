@@ -14,8 +14,20 @@ from .models import Order
 
 # Create your views here.
 def homepage_view(request) :
-    bo = Book2Auth.objects.all()
-    context = {"b2a" : bo}
+    if request.user.is_authenticated :
+        boo = Book2Auth.objects.all()
+        order = Order.objects.all().filter(user=request.user).values('book')
+        b2a=[]
+        bid = []
+        for i in order :
+            bid.append(i['book'])
+        for i in boo :
+            if i.book.pk not in bid :
+                b2a.append(i)
+    else :
+        b2a = Book2Auth.objects.all()
+            
+    context = {"b2a" : b2a}
     return render(request, 'user/homepage.html', context)
 
 def homepage_genre(request) :
