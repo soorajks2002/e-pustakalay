@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 app_name = 'user'
@@ -12,8 +12,13 @@ urlpatterns = [
     path('order/<int:pk>', views.order_book, name='order_book'),
     path('final-order/<int:pk>', views.order_final, name='order_final'),
     
-    path('sign-up/', views.signup_page, name='sign_up'),
-    path('new-user/', views.new_user, name='new_user'),
+    # path('', include('django.contrib.auth.urls'), name='login'),
+    path('signup/', views.sign_up, name="sign_up"),
+    path('login/', views.log_in, name='log_in'),
+    path('logout/', views.log_out, name='log_out'),
     
-    path('sign-in/', views.signin, name='sign_in'),
+    #! Custom User sign up and login pages 
+    # path('sign-up/', views.signup_page, name='sign_up'),
+    # path('new-user/', views.new_user, name='new_user'),
+    # path('sign-in/', views.signin, name='sign_in'),
 ]

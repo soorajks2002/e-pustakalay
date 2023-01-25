@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.urls import reverse
 from management.models import Book2Auth, Book
-from .models import Client
-from .forms import ClientForm
+from .forms import RegisterForm
+from django.contrib.auth import login, logout, authenticate
+
+# from .models import Client
+# from .forms import ClientForm
 
 # Create your views here.
 def homepage_view(request) :
@@ -13,7 +16,7 @@ def homepage_view(request) :
 
 def homepage_genre(request) :
     fin = {}
-    genres = ['romance', 'action', 'drama', 'self-help']
+    genres = ['Romance', 'Action', 'Drama', 'Self-Help']
     for i in genres :
         bo = Book.objects.filter(genres = i)[:5]
         fin[i] = bo
@@ -36,34 +39,56 @@ def book_by_genre(request, genre) :
     context = {"fin" : {genre : Book.objects.filter(genres=genre)}}
     return render(request, 'user/genre_book.html', context)
 
-
-def signup_page(request) :
-    context = {"form" : ClientForm}
-    return render(request, 'user/signup.html', context)
-
-def new_user (request) :
+def sign_up(request) :
     if request.method == 'POST' :
-        ClientForm(request.POST).save()
+        form = RegisterForm(request.POST)
+        if form.is_valid() :
+            user = form.save()
+            login(request, user)
+            return redirect(reverse('userapp:homepage'))
+    else :    
+        form = RegisterForm()
+    return render(request, 'user/signup.html', {'form':form})
+
+def log_in(request) :
+    return HttpResponse('login')
+
+def log_out(request) :
+    logout(request)
     return redirect(reverse('userapp:homepage'))
 
-def signin(request) :
+
+
+
+# ! Custom Sign-IN and Sign-Out
+
+# def signup_page(request) :
+#     context = {"form" : ClientForm}
+#     return render(request, 'user/custom_signup.html', context)
+
+# def new_user (request) :
+#     if request.method == 'POST' :
+#         ClientForm(request.POST).save()
+#     return redirect(reverse('userapp:homepage'))
+
+# def signin(request) :
     
-    if request.method == 'POST' :
-        userid = request.POST.get('usn')
-        pwd = request.POST.get('pwd')
-        client = Client.objects.filter(username = userid)
-        if client : 
-            client = client[0]
-            if client.password == pwd :
-                context = {"name" : client.name,
-                        "email" : client.email,
-                        "username" : client.username}
-                return render(request, 'user/hello_user.html', context)
-            else :
-                context = {'error' : 'WRONG PASSWORD'}
-                return render(request, 'user/error.html', context)
+#     if request.method == 'POST' :
+#         userid = request.POST.get('usn')
+#         pwd = request.POST.get('pwd')
+#         client = Client.objects.filter(username = userid)
+#         if client : 
+#             client = client[0]
+#             if client.password == pwd :
+#                 context = {"name" : client.name,
+#                         "email" : client.email,
+#                         "username" : client.username}
+#                 return render(request, 'user/custom_hello_user.html', context)
+#             else :
+#                 context = {'error' : 'WRONG PASSWORD'}
+#                 return render(request, 'user/custom_error.html', context)
         
-        context = {'error' : "USER DOESN'T EXIST"}
-        return render(request, 'user/error.html', context)
+#         context = {'error' : "USER DOESN'T EXIST"}
+#         return render(request, 'user/custom_error.html', context)
     
-    return render(request, 'user/signin.html')
+#     return render(request, 'user/custom_signin.html')
