@@ -30,6 +30,7 @@ def homepage_view(request) :
     context = {"b2a" : b2a}
     return render(request, 'user/homepage.html', context)
 
+@login_required(login_url='userapp:login')
 def homepage_genre(request) :
     fin = {}
     genres = ['Romance', 'Action', 'Drama', 'Self-Help']
@@ -56,7 +57,8 @@ def order_final(request, pk) :
     
     return redirect(reverse('userapp:homepage'))
     # return redirect(reverse("manageapp:book_info", kwargs={"bid": order.book.bookId}))
-    
+
+@login_required(login_url='userapp:log_in')    
 def book_by_genre(request, genre) :
     context = {"fin" : {genre : Book.objects.filter(genres=genre)}}
     return render(request, 'user/genre_book.html', context)
