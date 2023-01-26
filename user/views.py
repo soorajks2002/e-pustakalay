@@ -63,7 +63,11 @@ def order_final(request, pk) :
 
 @login_required(login_url='userapp:log_in')    
 def book_by_genre(request, genre) :
-    context = {"fin" : {genre : Book.objects.filter(genres=genre)}}
+    bo = Book.objects.filter(genres=genre)
+    fin = []
+    for i in bo :
+        fin.append(Book2Auth.objects.get(book=i))
+    context = {"fin" : {genre : fin}}
     return render(request, 'user/genre_book.html', context)
 
 def sign_up(request) :

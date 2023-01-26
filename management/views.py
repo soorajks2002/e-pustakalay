@@ -39,5 +39,7 @@ def viewBook(request,bid) :
 
 def viewAuth(request,aid) :
     au = Author.objects.get(authId=aid)
-    context =  {"auth" : au}
+    orders = Book2Auth.objects.filter(auth=au)
+    context =  {"auth" : au,
+                "orders" : orders}
     return render(request, 'management/author_detail.html', context)
