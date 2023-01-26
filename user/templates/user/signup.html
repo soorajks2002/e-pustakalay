@@ -1,11 +1,11 @@
-{% extends 'user/signup_base.html' %} {% block title %} SIGN UP {% endblock %}
+{% extends 'user/account_base.html' %} {% block title %} SIGN UP {% endblock %}
 {%load crispy_forms_tags %} {% block body %}
 <form method='post' action={% url 'userapp:sign_up' %}>
-    <div class='container'>
     {% csrf_token %}
     {{form|crispy}}
     {% comment %} {{form.as_p}} {% endcomment %}
-    <button type="submit" class="btn btn-lg btn-primary mt-5">Submit</button>
-    </div>  
+    <div class='d-flex justify-content-center'>
+        <button type="submit" class="btn btn-lg btn-dark mt-5 fw-bold">Submit</button>
+    </div>
 </form>
 {% endblock%}

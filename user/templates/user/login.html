@@ -1,4 +1,4 @@
-{% extends 'user/signup_base.html' %}
+{% extends 'user/account_base.html' %}
 
 {% block title %}LOGIN{% endblock title %}
 
@@ -20,7 +20,9 @@
     {% csrf_token %}
     {{form|crispy}}
     {% comment %} {{form.as_p}} {% endcomment %}
-    <button type="submit" class="btn btn-lg btn-primary mt-5">Submit</button>
+    <div class='d-flex justify-content-center'>
+        <button type="submit" class="btn btn-lg btn-dark mt-5 fw-bold">Submit</button>
+    </div>
     </div>  
 </form>
 {% endblock body %}
