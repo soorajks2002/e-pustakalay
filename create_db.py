@@ -18,7 +18,7 @@ for i in range(100) :
     
     id = "book_{d}".format(d=i)
     name = []
-    for t in range(random.randint(1,4)) :
+    for t in range(random.randint(3,4)) :
         name.append(book_name[random.randint(0,15)])
     name = ' '.join(name)   
     copy = random.randint(3,28)

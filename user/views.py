@@ -35,7 +35,10 @@ def homepage_genre(request) :
     fin = {}
     genres = ['Romance', 'Action', 'Drama', 'Self-Help']
     for i in genres :
-        bo = Book.objects.filter(genres = i)[:5]
+        b = Book.objects.filter(genres = i)[:5]
+        bo = []
+        for b1 in b :
+            bo.append(Book2Auth.objects.all().get(book=b1))
         fin[i] = bo
     context = {"fin" : fin}  
     return render(request, 'user/homepage_genre.html', context)
