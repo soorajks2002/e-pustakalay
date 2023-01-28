@@ -14,10 +14,6 @@ class RegisterForm(UserCreationForm) :
         model = User
         fields = ['first_name', 'last_name', 'email', 'dob', 'username', 'password1', 'password2']
         
-class LoginForm(ModelForm) :
-    class Meta :
-        model = User
-        fields = ['username', 'password']
 
 #! Custom User Form for custom user model (CLIENT)
 # class ClientForm(ModelForm) :
