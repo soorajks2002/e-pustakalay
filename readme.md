@@ -1,6 +1,6 @@
 ![App Screenshot](https://github.com/soorajks2002/Library-Management-System-DJANGO/blob/master/screenshots/banner.png?raw=true)
 
-# **e-पुस्तकालय**
+# **e-पुस्तकालय** (e-pustakalay)
 ## Installation
 
 ### 1. Install Required Packages
