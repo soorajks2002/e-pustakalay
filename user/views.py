@@ -7,6 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Order
+from .forms import RegisterForm
 
 # from .models import Client
 # from .forms import ClientForm
