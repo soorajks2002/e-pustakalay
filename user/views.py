@@ -30,7 +30,7 @@ def homepage_view(request) :
     context = {"b2a" : b2a}
     return render(request, 'user/homepage.html', context)
 
-@login_required(login_url='userapp:login')
+@login_required(login_url='userapp:log_in')
 def homepage_genre(request) :
     fin = {}
     genres = ['Romance', 'Action', 'Drama', 'Self-Help']
